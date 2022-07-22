@@ -9,7 +9,7 @@ body {
   font-size: 0.875rem;
   line-height: 1.5;
   font-family: Arial, Helvetica, sans-serif;
-  background: #fff9f9;
+  background: #ececec;
 }
 
 /*navbar*/
@@ -47,6 +47,7 @@ body {
   flex-direction: column;
   font-size: 18px;
   gap: 40px;
+  height: 100%;
 }
 
 .defaultsHeading {
@@ -93,8 +94,58 @@ body {
   gap: 20px;
   justify-content: center;
   font-size: 1.125rem;
+  padding: 10px;
 }
 
+.addProject:hover {
+  background: #ccc;
+}
+
+/*left panelad projects form*/
+#projectForm.hide {
+  display: none;
+}
+#projectForm {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  /*align-items: center;
+  justify-content: center;*/
+  flex: 1;
+}
+
+.inputField input[type="text"] {
+  padding: 7px;
+}
+
+.formButtons {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.projectSubmitBtn,
+.projectCancelBtn {
+  cursor: pointer;
+  padding: 5px 15px;
+  min-width: 70px;
+  color: white;
+  border-radius: 5px;
+  background: #2abd67;
+  border: transparent;
+  font-weight: 900;
+}
+
+.projectCancelBtn {
+  background: #be0404;
+}
 /*right panel*/
 .rightPanel {
   display: flex;
@@ -128,4 +179,104 @@ body {
 
 #addTask:hover {
   background: #fff;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.list-details {
+  flex: 1;
+}
+
+.tasks li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 0.4px solid#000;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+}
+
+.tasks li:hover {
+  background: #fff;
+}
+
+.tasks li input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  background-color: #d5d5d5;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tasks li input[type="checkbox"]::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f00c";
+  font-size: 10px;
+  display: flex;
+
+  color: white;
+  display: none;
+}
+
+.tasks li input[type="checkbox"]:checked {
+  background: green;
+}
+
+.tasks li input[type="checkbox"]:checked::after {
+  display: block;
+}
+
+.list-buttons {
+  display: flex;
+}
+
+#delete {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+/*right Panel Form(task form)*/
+#taskForm.hide {
+  display: none;
+}
+#taskForm {
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: monospace;
+}
+
+.inputField {
+  font-size: 1rem;
+  font-family: monospace;
+}
+#taskForm textarea,
+input[type="date"],
+input[type="text"] {
+  width: 100%;
+  resize: none;
+  font-size: 1rem;
+  /*padding: 10px;*/
+}
+#taskForm input[type="date"] {
+  height: 30px;
+  font-size: 1rem;
 }
