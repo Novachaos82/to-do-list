@@ -36,21 +36,76 @@
             <div class="project" id="projectTile"><i class="fa-solid fa-list-check"></i>Default one</div >
 
             <div class="project" id="projectTile"><i class="fa-solid fa-list-check"></i>Default one</div >
+<!-- form hidden -->
+              <form id="projectForm" class="hide" action="">
+                <div class="projectIcon">
+                  <span><i class="fa-solid fa-list"></i></span>
+                </div>
+                <div class="inputField">
 
+                  <input id="projectInput" type="text" placeholder="Enter project Name">
+                
+                  <div class="formButtons">
+                    <input type="submit" value="Add" class="projectSubmitBtn">
+                    <input type="button" value="Cancel" class="projectCancelBtn">
+                  </div>
+              </div>
+              </form>
               <button id="addProjectBtn" class="addProject"><i class="fa-solid fa-circle-plus"></i>Add Project</button>
           </div>
         </div>
       </div>
       <div class="rightPanel">
         <div class="title">Tasks</div>
-        <ul>
+        <ul class="tasks">
           <li>
             <div class="checkbox">
               <input type="checkbox" checked="checked">
             </div>
+            <div class="list-details">
+              <div class="task-title" id="taskTitle">Whatever</div>
+              <div class="task-details" id="taskDetails">I have to do this before this day</div>
+            </div>
+            <div class="list-buttons" id="listBtns">
+              <input type="date">
+              <button id="delete"><i class="fa-solid fa-trash-can"></i></button>
+
+            </div>
+            
+
+          </li>
+          <li>
+            <div class="checkbox">
+              <input type="checkbox" checked="checked">
+            </div>
+            <div class="list-details">
+              <div class="task-title" id="taskTitle">Whatever</div>
+              <div class="task-details" id="taskDetails">I have to do this before this day</div>
+            </div>
+            <div class="list-buttons" id="listBtns">
+              <input type="date">
+              <button id="delete"><i class="fa-solid fa-trash-can"></i></button>
+
+            </div>
+            
 
           </li>
         </ul>
+        <!-- form hidden -->
+        <form action="" id="taskForm" class="">
+          <div class="inputField">
+            <label for="taskTitle">Title</label>
+            <input type="text" name="title" id="taskTitle" placeholder="Enter the task Title">
+            <label for="taskDetails">Details</label>
+            <textarea name="" id="taskDetails"  placeholder="Enter the task Details"></textarea>
+            <label for="taskDate">Date:</label>
+            <input type="date">
+            <div class="formButtons">
+              <input type="submit" value="Add" class="projectSubmitBtn">
+              <input type="button" value="Cancel" class="projectCancelBtn">
+            </div>
+          </div>
+        </form>
         <button id="addTask"><i class="fa-solid fa-plus"></i>Add Task</button>
       </div>
     </div>
