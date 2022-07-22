@@ -6,6 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do-List</title>
     <script defer src="main.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css">
   </head>
-  <body></body>
+  <body>
+    <div class="navbar">
+      <h2><i class="fa-solid fa-calendar-check"></i>ToDoList</h4>
+    </div>
+    <div class="content" id="content">
+      <div class="leftPanel">
+        <div class="defaults">
+          <h4 class="defaultsHeading">Defaults</h4>
+          <div class="default-projects">
+            <div class="innerDefaults" id="allTask"><i class="fa-solid fa-border-all"></i>All Task</div>
+            <div class="innerDefaults" id="today"><i class="fa-solid fa-calendar-day"></i>Today</div>
+            <div class="innerDefaults" id="sevenDays"><i class="fa-solid fa-calendar-week"></i></i>7 Days</div>
+          </div>
+        </div>
+        <div class="projects">
+          <h4 class="projectsHeading">Projects</h4>
+          <div class="projects-div">
+            <div class="project" id="projectTile"><i class="fa-solid fa-list-check"></i>Default one</div >
+            <div class="project" id="projectTile"><i class="fa-solid fa-list-check"></i>Default one</div >
+
+            <div class="project" id="projectTile"><i class="fa-solid fa-list-check"></i>Default one</div >
+
+              <button id="addProjectBtn" class="addProject"><i class="fa-solid fa-circle-plus"></i>Add Project</button>
+          </div>
+        </div>
+      </div>
+      <div class="rightPanel">
+        <div class="title">Tasks</div>
+        <ul>
+          <li>
+            <div class="checkbox">
+              <input type="checkbox" checked="checked">
+            </div>
+
+          </li>
+        </ul>
+        <button id="addTask"><i class="fa-solid fa-plus"></i>Add Task</button>
+      </div>
+    </div>
+  </body>
 </html>

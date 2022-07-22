@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /*height: 100vh;*/
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff9f9;
+}
+
+/*navbar*/
+
+.navbar {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: black;
+  color: wheat;
+}
+
+.navbar h2 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/*main content grid*/
+.content {
+  /*margin-top: 20px;*/
+  display: grid;
+  grid-template-columns: 40vh auto;
+  /*gap: 20px;*/
+}
+
+/*left panel*/
+
+.leftPanel {
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  gap: 40px;
+}
+
+.defaultsHeading {
+  border-bottom: 1px solid black;
+}
+
+.innerDefaults {
+  /*margin-left: 20px;*/
+  /*margin-bottom: 10px;*/
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgb(217, 241, 180);
+  border-left: 5px solid green;
+}
+
+.projectsHeading {
+  border-bottom: 1px solid black;
+}
+
+.projects-div {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-div .project {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+}
+
+.addProject {
+  cursor: pointer;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  /*justify-content: space-around;*/
+  background: transparent;
+  border: transparent;
+  gap: 20px;
+  justify-content: center;
+  font-size: 1.125rem;
+}
+
+/*right panel*/
+.rightPanel {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 50px;
+  /*width: 60vh;*/
+}
+.title {
+  margin-top: 20px;
+  background: rgba(39, 199, 39, 0.596);
+
+  width: 100%;
+  padding: 20px;
+  font-size: 3rem;
+  color: #fff;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#addTask {
+  cursor: pointer;
+  background: transparent;
+  border: transparent;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 20px;
+  font-size: 18px;
+  padding: 20px;
+  gap: 20px;
+}
+
+#addTask:hover {
+  background: #fff;
+}
