@@ -1,1 +1,1 @@
-console.log("test main.js");
+(()=>{"use strict";const e=document.getElementById("addProjectBtn"),t=(document.querySelector(".projectSubmitBtn"),document.querySelector(".projectCancelBtn")),c=document.getElementById("projectForm");console.log("test main.js"),function(){const n=function(){c.classList.remove("hide")},o=function(){c.classList.add("hide")};e.addEventListener("click",(()=>{n()})),t.addEventListener("click",(()=>{o()}))}()})();

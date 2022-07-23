@@ -1,3 +1,5 @@
+import { formsButtons } from "./domContent";
+
 console.log("test main.js");
 
 //const formBtn = document.getElementById("projectForm");
@@ -5,3 +7,5 @@ console.log("test main.js");
 //addProjectBtn.addEventListener("click", () => {
 //  formBtn.classList.toggle("hide");
 //});
+
+formsButtons();

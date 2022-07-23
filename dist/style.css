@@ -55,6 +55,7 @@ body {
 }
 
 .innerDefaults {
+  cursor: pointer;
   /*margin-left: 20px;*/
   /*margin-bottom: 10px;*/
   margin-top: 20px;
@@ -62,6 +63,9 @@ body {
   align-items: center;
   gap: 10px;
   padding: 10px;
+}
+
+.innerDefaults.selected {
   background: rgb(217, 241, 180);
   border-left: 5px solid green;
 }
