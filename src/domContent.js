@@ -1,7 +1,14 @@
 const addProjectBtn = document.getElementById("addProjectBtn");
-const projectSubmitBtn = document.querySelector(".projectSubmitBtn");
-const projectCancelBtn = document.querySelector(".projectCancelBtn");
+const projectSubmitBtn = document.getElementById("projectSubmitBtn");
+const projectCancelBtn = document.getElementById("projectCancelBtn");
 const projectForm = document.getElementById("projectForm");
+
+const taskForm = document.getElementById("taskForm");
+const addTaskBtn = document.getElementById("addTask");
+const taskSubmitBtn = document.getElementById("taskSubmitBtn");
+const taskCancelBtn = document.getElementById("taskCancelBtn");
+
+//const
 const formsController = () => {
   const showFormProject = function () {
     projectForm.classList.remove("hide");
@@ -11,7 +18,15 @@ const formsController = () => {
     projectForm.classList.add("hide");
   };
 
-  return { showFormProject, hideFormProject };
+  const showFormTask = function () {
+    taskForm.classList.remove("hide");
+  };
+
+  const hideFormTask = function () {
+    taskForm.classList.add("hide");
+  };
+
+  return { showFormProject, hideFormProject, showFormTask, hideFormTask };
 };
 
 function formsButtons() {
@@ -23,6 +38,15 @@ function formsButtons() {
 
   projectCancelBtn.addEventListener("click", () => {
     formControl.hideFormProject();
+  });
+
+  addTaskBtn.addEventListener("click", () => {
+    formControl.showFormTask();
+    console.log("yes working");
+  });
+
+  taskCancelBtn.addEventListener("click", () => {
+    formControl.hideFormTask();
   });
 }
 
