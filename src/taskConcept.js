@@ -1,36 +1,84 @@
-const taskForm = document.getElementById("taskForm");
-const addTaskBtn = document.getElementById("addTask");
-const taskSubmitBtn = document.getElementById("taskSubmitBtn");
-const taskCancelBtn = document.getElementById("taskCancelBtn");
+import { projectArray } from ".";
 
-//const
-const formsController = () => {
-  const showFormTask = function () {
-    taskForm.classList.remove("hide");
-  };
+const taskEvents = () => {
+  const addTaskBtn = document.getElementById("addTask");
+  addTaskBtn.addEventListener("click", showTaskForm);
 
-  const hideFormTask = function () {
-    taskForm.classList.add("hide");
-  };
+  const cancelTaskBtn = document.getElementById("taskCancelBtn");
+  cancelTaskBtn.addEventListener("click", hideTaskForm);
 
-  return { showFormTask, hideFormTask };
+  const submitTaskBtn = document.getElementById("taskSubmitBtn");
+  submitTaskBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    addTasktoTaskListArray();
+    console.log(projectArray[0].taskList);
+  });
 };
 
-function formsButtons() {
-  const formControl = formsController();
+let id = 0;
+const addTasktoTaskListArray = () => {
+  const title = document.getElementById("taskTitle").value;
+  const checkbox = document.getElementById("checkboxID").value;
+  const details = document.getElementById("taskDetails").value;
+  const date = document.getElementById("Date").value;
+  const dataId = getDataID();
+  const taskID = id;
+  const newTask = createTask(checkbox, title, details, date, taskID);
+  projectArray[0].taskList.push(newTask);
+  addTaskToDom(checkbox, title, details, date, taskID);
+  id++;
+};
 
-  projectCancelBtn.addEventListener("click", () => {
-    formControl.hideFormProject();
-  });
+const addTaskToDom = (checkbox, title, details, date, taskID) => {
+  const tasks = document.querySelector(".tasks");
 
-  addTaskBtn.addEventListener("click", () => {
-    formControl.showFormTask();
-    console.log("yes working");
-  });
+  const li = document.createElement("li");
 
-  taskCancelBtn.addEventListener("click", () => {
-    formControl.hideFormTask();
-  });
-}
+  const checkBoxDiv = document.createElement("div");
+  checkBoxDiv.classList.add("checkbox");
+  const checkboxEle = document.createElement("input");
+  checkboxEle.type = "checkbox";
+  checkboxEle.value = checkbox;
+  checkBoxDiv.appendChild(checkboxEle);
 
-export { formsButtons };
+  const listDetails = document.createElement("div");
+  listDetails.classList.add("list-details");
+
+  const taskTitle = document.createElement("div");
+  taskTitle.classList.add("task-title");
+  taskTitle.textContent = "" + title;
+  listDetails.appendChild(taskTitle);
+
+  const taskDetails = document.createElement("div");
+  taskDetails.classList.add("task-details");
+  taskDetails.textContent = details;
+  listDetails.appendChild(taskDetails);
+
+  li.dataset.task = taskID;
+
+  li.appendChild(checkBoxDiv);
+  li.appendChild(listDetails);
+
+  tasks.appendChild(li);
+};
+
+const createTask = (checkbox, title, details, date, id) => {
+  return { checkbox, title, details, date, id };
+};
+
+const showTaskForm = () => {
+  const form = document.getElementById("taskForm");
+  form.classList.remove("hide");
+};
+
+const hideTaskForm = () => {
+  const form = document.getElementById("taskForm");
+  form.classList.add("hide");
+};
+const getDataID = () => {
+  const selectedProject = document.querySelector(".selected");
+  console.log(selectedProject.dataset.project);
+
+  return selectedProject.dataset.project;
+};
+export { taskEvents, getDataID };

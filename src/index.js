@@ -1,4 +1,4 @@
-import { formsButtons } from "./taskConcept";
+import { getDataID, taskEvents } from "./taskConcept";
 import { dataLength, eventListeners } from "./projectConcept";
 //import { submit } from "./projectConcept";
 
@@ -11,7 +11,9 @@ let projectArray = [];
 //addProjectBtn.addEventListener("click", () => {
 //  formBtn.classList.toggle("hide");
 //});
-formsButtons();
 //submit();
 eventListeners();
+taskEvents();
+getDataID();
+taskEvents();
 export { projectArray };

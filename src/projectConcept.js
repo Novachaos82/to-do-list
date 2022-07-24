@@ -12,10 +12,11 @@ const eventListeners = () => {
     e.preventDefault();
     addProjectToArray();
     clearValue();
+    console.log(projectArray);
   });
 
   const projects = document.querySelector(".projects-div");
-  projects.addEventListener("click", select);
+  projects.addEventListener("mouseover", select);
   //displayProject(projectArray);
 };
 
