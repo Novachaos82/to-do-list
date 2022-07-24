@@ -1,9 +1,10 @@
 import { formsButtons } from "./domContent";
-import { submit } from "./projectConcept";
+import { dataLength, eventListeners } from "./projectConcept";
+//import { submit } from "./projectConcept";
 
 console.log("test main.js");
 
-let project = [];
+let projectArray = [];
 
 //const formBtn = document.getElementById("projectForm");
 //const addProjectBtn = document.getElementById("addProjectBtn");
@@ -11,6 +12,6 @@ let project = [];
 //  formBtn.classList.toggle("hide");
 //});
 formsButtons();
-submit();
-console.log(project);
-export { project };
+//submit();
+eventListeners();
+export { projectArray };
