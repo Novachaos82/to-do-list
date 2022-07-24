@@ -11,9 +11,17 @@ const eventListeners = () => {
   projectSubmitBtn.addEventListener("click", (e) => {
     e.preventDefault();
     addProjectToArray();
+    clearValue();
   });
 
-  displayProject(projectArray);
+  const projects = document.querySelector(".projects-div");
+  projects.addEventListener("click", select);
+  //displayProject(projectArray);
+};
+
+const clearValue = () => {
+  let projectName = document.getElementById("projectInput");
+  projectName.value = "";
 };
 
 const addProjectToArray = () => {
@@ -36,11 +44,11 @@ const addProjectToDOM = (projectData, projectName) => {
   projectDiv.appendChild(project);
 };
 
-const displayProject = (array) => {
-  array.forEach((element) => {
-    addProjectToDOM(element.projectData, element.projectName);
-  });
-};
+//const displayProject = (array) => {
+//  array.forEach((element) => {
+//    addProjectToDOM(element.projectData, element.projectName);
+//  });
+//};
 
 const createProject = (projectData, projectName) => {
   let taskList = [];
@@ -64,6 +72,21 @@ const hideFormProject = () => {
 const newDataId = () => {
   const projectDataNum = document.querySelectorAll("[data-project]");
   return projectDataNum.length;
+};
+
+const select = () => {
+  const projects = document.querySelectorAll(".project");
+
+  projects.forEach((project) => {
+    //project.classList.remove("selected");
+    project.addEventListener("click", () => {
+      const oldTile = document.querySelector(".selected");
+      oldTile.classList.remove("selected");
+      project.classList.add("selected");
+      console.log(document.querySelector(".selected").dataset.project);
+    });
+    //project.classList.remove("selected");
+  });
 };
 
 export { eventListeners };
