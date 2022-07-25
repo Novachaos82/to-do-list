@@ -1,4 +1,4 @@
-import { getDataID, taskEvents } from "./taskConcept";
+import { taskEvents } from "./taskConcept";
 import { dataLength, eventListeners } from "./projectConcept";
 //import { submit } from "./projectConcept";
 
@@ -14,6 +14,6 @@ let projectArray = [];
 //submit();
 eventListeners();
 taskEvents();
-getDataID();
-taskEvents();
+
+
 export { projectArray };
