@@ -11,7 +11,7 @@ const taskEvents = () => {
   submitTaskBtn.addEventListener("click", (e) => {
     e.preventDefault();
     addTasktoTaskListArray();
-    console.log(projectArray[0].taskList);
+    console.log(projectArray[getDataID()].taskList);
   });
 };
 
@@ -25,7 +25,7 @@ const addTasktoTaskListArray = () => {
   const dataId = getDataID();
   const taskID = id;
   const newTask = createTask(checkbox, title, details, date, taskID);
-  projectArray[0].taskList.push(newTask);
+  projectArray[dataId].taskList.push(newTask);
   addTaskToDom(checkbox, title, details, date, taskID);
   id++;
 };
