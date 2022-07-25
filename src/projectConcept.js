@@ -1,5 +1,8 @@
 import { projectArray } from ".";
-
+import { createProject } from "./factories";
+import { showFormProject, hideFormProject, displayTask } from "./displayDOM";
+import { displayProject } from "./displayDOM";
+import { getDataID } from "./taskConcept";
 const eventListeners = () => {
   const addProjectBtn = document.getElementById("addProjectBtn");
   addProjectBtn.addEventListener("click", showFormProject);
@@ -11,18 +14,15 @@ const eventListeners = () => {
   projectSubmitBtn.addEventListener("click", (e) => {
     e.preventDefault();
     addProjectToArray();
-    clearValue();
+
     console.log(projectArray);
+    displayProject(projectArray);
   });
 
   const projects = document.querySelector(".projects-div");
-  projects.addEventListener("mouseover", select);
-  //displayProject(projectArray);
-};
-
-const clearValue = () => {
-  let projectName = document.getElementById("projectInput");
-  projectName.value = "";
+  projects.addEventListener("mouseover", () => {
+    select();
+  });
 };
 
 const addProjectToArray = () => {
@@ -31,7 +31,8 @@ const addProjectToArray = () => {
   const newProject = createProject(projectData, projectName);
   console.log(projectData + "each time");
   projectArray.push(newProject);
-  addProjectToDOM(projectData, projectName);
+
+  hideFormProject();
 };
 
 const addProjectToDOM = (projectData, projectName) => {
@@ -42,32 +43,14 @@ const addProjectToDOM = (projectData, projectName) => {
   project.dataset.project = projectData;
   project.classList.add("project");
 
+  const delBtn = document.createElement("button");
+  delBtn.id = "deleteButton";
+  delBtn.classList.add("projectDelBtn");
+  delBtn.innerHTML = `<i class="fa-solid fa-xmark">`;
+
+  project.appendChild(delBtn);
+
   projectDiv.appendChild(project);
-};
-
-//const displayProject = (array) => {
-//  array.forEach((element) => {
-//    addProjectToDOM(element.projectData, element.projectName);
-//  });
-//};
-
-const createProject = (projectData, projectName) => {
-  let taskList = [];
-  let taskNum = taskList.length;
-
-  return { projectData, projectName, taskList, taskNum };
-};
-
-const showFormProject = () => {
-  const projectForm = document.getElementById("projectForm");
-
-  projectForm.classList.remove("hide");
-};
-
-const hideFormProject = () => {
-  const projectForm = document.getElementById("projectForm");
-
-  projectForm.classList.add("hide");
 };
 
 const newDataId = () => {
@@ -76,6 +59,11 @@ const newDataId = () => {
 };
 
 const select = () => {
+  //if (e.contains("project")) {
+  //  selectClassAdd();
+  //} else {
+  //  deleteProject();
+  //}
   const projects = document.querySelectorAll(".project");
 
   projects.forEach((project) => {
@@ -86,9 +74,15 @@ const select = () => {
       project.classList.add("selected");
       console.log(document.querySelector(".selected").dataset.project);
       e.stopImmediatePropagation();
+      displayTask(getDataID());
     });
     //project.classList.remove("selected");
   });
 };
 
-export { eventListeners };
+//const selectClassAdd = () => {};
+//const deleteProject = (projectData) => {
+//  projectArray.splice(projectData, 1);
+//};
+
+export { eventListeners, addProjectToDOM };

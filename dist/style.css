@@ -86,10 +86,22 @@ body {
   align-items: center;
   padding: 10px;
   cursor: pointer;
+  position: relative;
+  transition: all 0.1s linear;
+}
+
+.projectDelBtn {
+  cursor: pointer;
+  position: absolute;
+  background: none;
+  border: none;
+  font-size: 20px;
+  right: 10px;
 }
 
 .project.selected {
-  background: green;
+  background: rgb(217, 241, 180);
+  border-left: 5px solid green;
 }
 
 .addProject {

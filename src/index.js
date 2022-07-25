@@ -1,5 +1,6 @@
 import { getDataID, taskEvents } from "./taskConcept";
 import { dataLength, eventListeners } from "./projectConcept";
+import { displayProject, displayTask } from "./displayDOM";
 //import { submit } from "./projectConcept";
 
 console.log("test main.js");
@@ -15,5 +16,6 @@ let projectArray = [];
 getDataID();
 eventListeners();
 taskEvents();
+
 
 export { projectArray };

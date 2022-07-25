@@ -1,5 +1,6 @@
 import { projectArray } from ".";
-
+import { createTask } from "./factories";
+import { showTaskForm, hideTaskForm } from "./displayDOM";
 /*task form button events*/
 const taskEvents = () => {
   const addTaskBtn = document.getElementById("addTask");
@@ -11,25 +12,26 @@ const taskEvents = () => {
   const submitTaskBtn = document.getElementById("taskSubmitBtn");
   submitTaskBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    addTasktoTaskListArray();
-    console.log(projectArray[getDataID()].taskList);
+    addTasktoTaskArray();
+    console.log(projectArray[getDataID()].taskArray);
   });
 };
+/*task creator factory*/
 
 let id = 0;
 
-/*adding the task to projectArray "taskList"*/
-const addTasktoTaskListArray = () => {
+/*adding the task to projectArray "taskArray"*/
+const addTasktoTaskArray = () => {
   const title = document.getElementById("taskTitle").value;
-  const checkbox = document.getElementById("checkboxID").value;
+  //const checkbox = document.getElementById("checkboxID").checked;
   const details = document.getElementById("taskDetails").value;
   const date = document.getElementById("Date").value;
   const dataId = getDataID();
   const taskID = id;
-  const newTask = createTask(checkbox, title, details, date, taskID);
-  projectArray[dataId].taskList.push(newTask);
-  addTaskToDom(checkbox, title, details, date, taskID);
+  const newTask = createTask(title, details, date, taskID, dataId);
+  projectArray[dataId].taskArray.push(newTask);
   id++;
+  hideTaskForm();
 };
 
 /*adding task to DOM*/
@@ -44,8 +46,9 @@ const addTaskToDom = (checkbox, title, details, date, taskID) => {
   const checkBoxDiv = document.createElement("div");
   checkBoxDiv.classList.add("checkbox");
   const checkboxEle = document.createElement("input");
+  checkboxEle.id = "checkboxID";
   checkboxEle.type = "checkbox";
-  checkboxEle.value = checkbox;
+  checkboxEle.checked = checkbox;
   checkBoxDiv.appendChild(checkboxEle);
 
   /*list details which is task text */
@@ -87,29 +90,6 @@ const addTaskToDom = (checkbox, title, details, date, taskID) => {
   tasks.appendChild(li);
 };
 
-/*task creator factory*/
-const createTask = (checkbox, title, details, date, id) => {
-  return {
-    checkbox,
-    title,
-    details,
-    date,
-    id,
-  };
-};
-
-/*show task form when add task event is triggered*/
-const showTaskForm = () => {
-  const form = document.getElementById("taskForm");
-  form.classList.remove("hide");
-};
-
-/*hide task form when cancel event is triggered*/
-const hideTaskForm = () => {
-  const form = document.getElementById("taskForm");
-  form.classList.add("hide");
-};
-
 /*getting the selected project data id "data-project"*/
 const getDataID = () => {
   const selectedProject = document.querySelector(".selected");
@@ -118,4 +98,4 @@ const getDataID = () => {
   return selectedProject.dataset.project;
 };
 
-export { taskEvents, getDataID };
+export { taskEvents, getDataID, addTaskToDom };
