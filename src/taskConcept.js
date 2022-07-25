@@ -9,7 +9,6 @@ const taskEvents = () => {
 
   const submitTaskBtn = document.getElementById("taskSubmitBtn");
   submitTaskBtn.addEventListener("click", (e) => {
-    console.log("submitted");
     e.preventDefault();
     addTasktoTaskListArray();
     console.log(projectArray[0].taskList);
@@ -17,7 +16,7 @@ const taskEvents = () => {
 };
 
 let id = 0;
-let times = 0;
+
 const addTasktoTaskListArray = () => {
   const title = document.getElementById("taskTitle").value;
   const checkbox = document.getElementById("checkboxID").value;
@@ -29,8 +28,6 @@ const addTasktoTaskListArray = () => {
   projectArray[0].taskList.push(newTask);
   addTaskToDom(checkbox, title, details, date, taskID);
   id++;
-  console.log(times + "times");
-  times++;
 };
 
 const addTaskToDom = (checkbox, title, details, date, taskID) => {

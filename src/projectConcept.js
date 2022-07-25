@@ -80,11 +80,12 @@ const select = () => {
 
   projects.forEach((project) => {
     //project.classList.remove("selected");
-    project.addEventListener("click", () => {
+    project.addEventListener("click", (e) => {
       const oldTile = document.querySelector(".selected");
       oldTile.classList.remove("selected");
       project.classList.add("selected");
       console.log(document.querySelector(".selected").dataset.project);
+      e.stopImmediatePropagation();
     });
     //project.classList.remove("selected");
   });
