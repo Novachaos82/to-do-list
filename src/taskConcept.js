@@ -55,16 +55,36 @@ const addTaskToDom = (checkbox, title, details, date, taskID) => {
   taskDetails.textContent = details;
   listDetails.appendChild(taskDetails);
 
+  const listBtnDiv = document.createElement("div");
+  listBtnDiv.classList.add("list-buttons");
+
+  const dateEl = document.createElement("input");
+  dateEl.type = "date";
+  dateEl.value = date;
+  listBtnDiv.appendChild(dateEl);
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.id = "delete";
+  deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+  listBtnDiv.appendChild(deleteBtn);
+
   li.dataset.task = taskID;
 
   li.appendChild(checkBoxDiv);
   li.appendChild(listDetails);
+  li.appendChild(listBtnDiv);
 
   tasks.appendChild(li);
 };
 
 const createTask = (checkbox, title, details, date, id) => {
-  return { checkbox, title, details, date, id };
+  return {
+    checkbox,
+    title,
+    details,
+    date,
+    id,
+  };
 };
 
 const showTaskForm = () => {
