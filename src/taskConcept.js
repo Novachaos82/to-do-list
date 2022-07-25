@@ -1,5 +1,6 @@
 import { projectArray } from ".";
 
+/*task form button events*/
 const taskEvents = () => {
   const addTaskBtn = document.getElementById("addTask");
   addTaskBtn.addEventListener("click", showTaskForm);
@@ -17,6 +18,7 @@ const taskEvents = () => {
 
 let id = 0;
 
+/*adding the task to projectArray "taskList"*/
 const addTasktoTaskListArray = () => {
   const title = document.getElementById("taskTitle").value;
   const checkbox = document.getElementById("checkboxID").value;
@@ -30,11 +32,15 @@ const addTasktoTaskListArray = () => {
   id++;
 };
 
+/*adding task to DOM*/
 const addTaskToDom = (checkbox, title, details, date, taskID) => {
+  /*task  div*/
   const tasks = document.querySelector(".tasks");
 
+  /*making an li element for each tasks*/
   const li = document.createElement("li");
 
+  /*checkbox*/
   const checkBoxDiv = document.createElement("div");
   checkBoxDiv.classList.add("checkbox");
   const checkboxEle = document.createElement("input");
@@ -42,6 +48,7 @@ const addTaskToDom = (checkbox, title, details, date, taskID) => {
   checkboxEle.value = checkbox;
   checkBoxDiv.appendChild(checkboxEle);
 
+  /*list details which is task text */
   const listDetails = document.createElement("div");
   listDetails.classList.add("list-details");
 
@@ -55,6 +62,7 @@ const addTaskToDom = (checkbox, title, details, date, taskID) => {
   taskDetails.textContent = details;
   listDetails.appendChild(taskDetails);
 
+  /*buttons on right side of the task div (delete and date)*/
   const listBtnDiv = document.createElement("div");
   listBtnDiv.classList.add("list-buttons");
 
@@ -70,13 +78,16 @@ const addTaskToDom = (checkbox, title, details, date, taskID) => {
 
   li.dataset.task = taskID;
 
+  /*appending all the divs to li*/
   li.appendChild(checkBoxDiv);
   li.appendChild(listDetails);
   li.appendChild(listBtnDiv);
 
+  /*appending li to task div*/
   tasks.appendChild(li);
 };
 
+/*task creator factory*/
 const createTask = (checkbox, title, details, date, id) => {
   return {
     checkbox,
@@ -87,19 +98,24 @@ const createTask = (checkbox, title, details, date, id) => {
   };
 };
 
+/*show task form when add task event is triggered*/
 const showTaskForm = () => {
   const form = document.getElementById("taskForm");
   form.classList.remove("hide");
 };
 
+/*hide task form when cancel event is triggered*/
 const hideTaskForm = () => {
   const form = document.getElementById("taskForm");
   form.classList.add("hide");
 };
+
+/*getting the selected project data id "data-project"*/
 const getDataID = () => {
   const selectedProject = document.querySelector(".selected");
   console.log(selectedProject.dataset.project);
 
   return selectedProject.dataset.project;
 };
+
 export { taskEvents, getDataID };
