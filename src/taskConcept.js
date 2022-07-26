@@ -1,10 +1,12 @@
 import { projectArray } from ".";
 import { createTask } from "./factories";
-import { showTaskForm, hideTaskForm } from "./displayDOM";
+import { showTaskForm, hideTaskForm, displayTask } from "./displayDOM";
 /*task form button events*/
 const taskEvents = () => {
   const addTaskBtn = document.getElementById("addTask");
-  addTaskBtn.addEventListener("click", showTaskForm);
+  addTaskBtn.addEventListener("click", () => {
+    showTaskForm();
+  });
 
   const cancelTaskBtn = document.getElementById("taskCancelBtn");
   cancelTaskBtn.addEventListener("click", hideTaskForm);
@@ -30,6 +32,7 @@ const addTasktoTaskArray = () => {
   const taskID = id;
   const newTask = createTask(title, details, date, taskID, dataId);
   projectArray[dataId].taskArray.push(newTask);
+  addTaskToDom(false, title, details, date, taskID);
   id++;
   hideTaskForm();
 };
