@@ -1,15 +1,13 @@
 import { projectArray } from ".";
 import { createTask } from "./factories";
-import { showTaskForm, hideTaskForm } from "./displayDOM";
+import { formModule } from "./displayDOM";
 /*task form button events*/
 const taskEvents = () => {
   const addTaskBtn = document.getElementById("addTask");
-  addTaskBtn.addEventListener("click", () => {
-    showTaskForm();
-  });
+  addTaskBtn.addEventListener("click", formModule().showTaskForm);
 
   const cancelTaskBtn = document.getElementById("taskCancelBtn");
-  cancelTaskBtn.addEventListener("click", hideTaskForm);
+  cancelTaskBtn.addEventListener("click", formModule().hideTaskForm);
 
   const submitTaskBtn = document.getElementById("taskSubmitBtn");
   submitTaskBtn.addEventListener("click", (e) => {
@@ -17,6 +15,8 @@ const taskEvents = () => {
     addTasktoTaskArray();
     console.log(projectArray[getDataID()].taskArray);
   });
+
+  const taskDiv = document.getElementsByName("li");
 };
 /*task creator factory*/
 
@@ -35,7 +35,7 @@ const addTasktoTaskArray = () => {
   projectArray[dataId].taskArray.push(newTask);
   addTaskToDom(false, title, details, date, taskID, priority);
   id++;
-  hideTaskForm();
+  formModule().hideTaskForm();
 };
 
 /*adding task to DOM*/
@@ -76,6 +76,7 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
   const dateEl = document.createElement("input");
   dateEl.type = "date";
   dateEl.value = date;
+  dateEl.readOnly = true;
   listBtnDiv.appendChild(dateEl);
 
   const deleteBtn = document.createElement("button");
@@ -84,9 +85,7 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
   listBtnDiv.appendChild(deleteBtn);
 
   if (priority === "low") li.classList.add("low");
-
   if (priority === "med") li.classList.add("med");
-
   if (priority === "high") li.classList.add("high");
 
   li.dataset.task = taskID;

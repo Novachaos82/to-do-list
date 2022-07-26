@@ -2,28 +2,32 @@ import { addProjectToDOM } from "./projectConcept";
 import { addTaskToDom } from "./taskConcept";
 import { projectArray } from ".";
 
-const showFormProject = () => {
-  const projectForm = document.getElementById("projectForm");
+const formModule = () => {
+  const showTaskForm = () => {
+    const form = document.getElementById("taskForm");
+    form.classList.remove("hide");
+    form.reset();
+  };
 
-  projectForm.classList.remove("hide");
-  projectForm.reset();
-};
+  const hideTaskForm = () => {
+    const form = document.getElementById("taskForm");
+    form.classList.add("hide");
+  };
 
-const hideFormProject = () => {
-  const projectForm = document.getElementById("projectForm");
+  const showFormProject = () => {
+    const projectForm = document.getElementById("projectForm");
 
-  projectForm.classList.add("hide");
-};
+    projectForm.classList.remove("hide");
+    projectForm.reset();
+  };
 
-const showTaskForm = () => {
-  const form = document.getElementById("taskForm");
-  form.classList.remove("hide");
-  form.reset();
-};
+  const hideFormProject = () => {
+    const projectForm = document.getElementById("projectForm");
 
-const hideTaskForm = () => {
-  const form = document.getElementById("taskForm");
-  form.classList.add("hide");
+    projectForm.classList.add("hide");
+  };
+
+  return { showTaskForm, hideTaskForm, showFormProject, hideFormProject };
 };
 
 const displayProject = (array) => {
@@ -51,11 +55,4 @@ const displayTask = (projectID) => {
   });
 };
 
-export {
-  showFormProject,
-  hideFormProject,
-  showTaskForm,
-  hideTaskForm,
-  displayProject,
-  displayTask,
-};
+export { formModule, displayProject, displayTask };

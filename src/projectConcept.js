@@ -1,23 +1,19 @@
 import { projectArray } from ".";
 import { createProject } from "./factories";
-import {
-  showFormProject,
-  hideFormProject,
-  displayTask,
-  displayProject,
-} from "./displayDOM";
+import { formModule, displayTask, displayProject } from "./displayDOM";
 
 import { getDataID } from "./taskConcept";
 const eventListeners = () => {
   const addProjectBtn = document.getElementById("addProjectBtn");
-  addProjectBtn.addEventListener("click", showFormProject);
+  addProjectBtn.addEventListener("click", formModule().showFormProject);
 
   const projectCancelBtn = document.getElementById("projectCancelBtn");
-  projectCancelBtn.addEventListener("click", hideFormProject);
+  projectCancelBtn.addEventListener("click", formModule().hideFormProject);
 
   const projectSubmitBtn = document.getElementById("projectSubmitBtn");
   projectSubmitBtn.addEventListener("click", (e) => {
     e.preventDefault();
+
     addProjectToArray();
 
     console.log(projectArray);
@@ -37,7 +33,7 @@ const addProjectToArray = () => {
   console.log(projectData + "each time");
   projectArray.push(newProject);
 
-  hideFormProject();
+  formModule().hideFormProject();
 };
 
 const addProjectToDOM = (projectData, projectName) => {
