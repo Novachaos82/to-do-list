@@ -5,13 +5,14 @@ const createProject = (projectData, projectName) => {
   return { projectData, projectName, taskArray, taskNum };
 };
 
-const createTask = (title, details, date, id, projectID) => {
+const createTask = (title, details, date, id, priority, projectID) => {
   return {
     checkbox: false,
     title,
     details,
     date,
     id,
+    priority,
     projectID,
   };
 };

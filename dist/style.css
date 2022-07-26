@@ -301,3 +301,15 @@ input[type="text"] {
   height: 30px;
   font-size: 1rem;
 }
+
+.high {
+  background: red;
+}
+
+.low {
+  background: yellowgreen;
+}
+
+.med {
+  background: rgb(133, 133, 224);
+}

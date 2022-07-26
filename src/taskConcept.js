@@ -1,6 +1,6 @@
 import { projectArray } from ".";
 import { createTask } from "./factories";
-import { showTaskForm, hideTaskForm, displayTask } from "./displayDOM";
+import { showTaskForm, hideTaskForm } from "./displayDOM";
 /*task form button events*/
 const taskEvents = () => {
   const addTaskBtn = document.getElementById("addTask");
@@ -30,15 +30,16 @@ const addTasktoTaskArray = () => {
   const date = document.getElementById("Date").value;
   const dataId = getDataID();
   const taskID = id;
-  const newTask = createTask(title, details, date, taskID, dataId);
+  const priority = document.getElementById("priority").value;
+  const newTask = createTask(title, details, date, taskID, priority, dataId);
   projectArray[dataId].taskArray.push(newTask);
-  addTaskToDom(false, title, details, date, taskID);
+  addTaskToDom(false, title, details, date, taskID, priority);
   id++;
   hideTaskForm();
 };
 
 /*adding task to DOM*/
-const addTaskToDom = (checkbox, title, details, date, taskID) => {
+const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
   /*task  div*/
   const tasks = document.querySelector(".tasks");
 
@@ -81,6 +82,12 @@ const addTaskToDom = (checkbox, title, details, date, taskID) => {
   deleteBtn.id = "delete";
   deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
   listBtnDiv.appendChild(deleteBtn);
+
+  if (priority === "low") li.classList.add("low");
+
+  if (priority === "med") li.classList.add("med");
+
+  if (priority === "high") li.classList.add("high");
 
   li.dataset.task = taskID;
 

@@ -1,7 +1,12 @@
 import { projectArray } from ".";
 import { createProject } from "./factories";
-import { showFormProject, hideFormProject, displayTask } from "./displayDOM";
-import { displayProject } from "./displayDOM";
+import {
+  showFormProject,
+  hideFormProject,
+  displayTask,
+  displayProject,
+} from "./displayDOM";
+
 import { getDataID } from "./taskConcept";
 const eventListeners = () => {
   const addProjectBtn = document.getElementById("addProjectBtn");

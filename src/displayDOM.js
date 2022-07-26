@@ -45,7 +45,8 @@ const displayTask = (projectID) => {
       task.title,
       task.details,
       task.date,
-      task.taskID
+      task.taskID,
+      task.priority
     );
   });
 };
