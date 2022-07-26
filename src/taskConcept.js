@@ -1,6 +1,6 @@
 import { projectArray } from ".";
 import { createTask } from "./factories";
-import { formModule } from "./displayDOM";
+import { deleteTask, formModule } from "./displayDOM";
 /*task form button events*/
 const taskEvents = () => {
   const addTaskBtn = document.getElementById("addTask");
@@ -16,7 +16,12 @@ const taskEvents = () => {
     console.log(projectArray[getDataID()].taskArray);
   });
 
-  const taskDiv = document.getElementsByName("li");
+  const taskUlDIV = document.querySelector(".tasks");
+  taskUlDIV.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    checkEvent(e);
+  });
 };
 /*task creator factory*/
 
@@ -45,7 +50,7 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
 
   /*making an li element for each tasks*/
   const li = document.createElement("li");
-
+  li.classList.add("task");
   /*checkbox*/
   const checkBoxDiv = document.createElement("div");
   checkBoxDiv.classList.add("checkbox");
@@ -81,7 +86,9 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
 
   const deleteBtn = document.createElement("button");
   deleteBtn.id = "delete";
-  deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+  deleteBtn.dataset.id = taskID;
+  deleteBtn.classList.add("fa-solid");
+  deleteBtn.classList.add("fa-trash-can");
   listBtnDiv.appendChild(deleteBtn);
 
   if (priority === "low") li.classList.add("low");
@@ -98,7 +105,14 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
   /*appending li to task div*/
   tasks.appendChild(li);
 };
-
+const checkEvent = (e) => {
+  if (e.target.id === "delete") {
+    deleteTask(
+      getDataID(),
+      e.target.parentNode.parentNode.getAttribute("data-task")
+    );
+  }
+};
 /*getting the selected project data id "data-project"*/
 const getDataID = () => {
   const selectedProject = document.querySelector(".selected");

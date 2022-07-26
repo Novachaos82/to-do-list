@@ -43,7 +43,7 @@ const displayTask = (projectID) => {
   document.querySelector(".tasks").innerHTML = "";
 
   projectArray[projectID].taskArray.forEach((task) => {
-    console.log("loop called");
+    console.log("display task called");
     addTaskToDom(
       task.checkbox,
       task.title,
@@ -55,4 +55,9 @@ const displayTask = (projectID) => {
   });
 };
 
-export { formModule, displayProject, displayTask };
+const deleteTask = (projectID, taskID) => {
+  projectArray[projectID].taskArray.splice(taskID, 1);
+
+  displayTask(projectID);
+};
+export { formModule, displayProject, displayTask, deleteTask };
