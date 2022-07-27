@@ -1,6 +1,7 @@
 import { projectArray } from ".";
 import { createTask } from "./factories";
-import { deleteTask, formModule } from "./displayDOM";
+import { deleteTask, displayTask, formModule } from "./displayDOM";
+import { localeUpdate } from "./storage";
 /*task form button events*/
 const taskEvents = () => {
   const addTaskBtn = document.getElementById("addTask");
@@ -18,10 +19,15 @@ const taskEvents = () => {
 
   const taskUlDIV = document.querySelector(".tasks");
   taskUlDIV.addEventListener("click", (e) => {
-    e.stopPropagation();
+    //e.stopPropagation();
 
     checkEvent(e);
+    //console.log(
+    //  e.target.parentNode.parentNode.getAttribute("data-task") + "e.parentnode"
+    //);
+    //console.log(e.target.id);
   });
+  displayTask(getDataID());
 };
 /*task creator factory*/
 
@@ -38,10 +44,15 @@ const addTasktoTaskArray = () => {
   const priority = document.getElementById("priority").value;
   const newTask = createTask(title, details, date, taskID, priority, dataId);
   projectArray[dataId].taskArray.push(newTask);
+  //localeUpdate();
   addTaskToDom(false, title, details, date, taskID, priority);
   id++;
   formModule().hideTaskForm();
 };
+
+//const getTaskId = ()=>{
+//  projectArray[getDataID()].taskArray.len
+//}
 
 /*adding task to DOM*/
 const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
@@ -107,6 +118,11 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
 };
 const checkEvent = (e) => {
   if (e.target.id === "delete") {
+    console.log(
+      getDataID(),
+      e.target.parentNode.parentNode.getAttribute("data-task") +
+        "checkeventDelete"
+    );
     deleteTask(
       getDataID(),
       e.target.parentNode.parentNode.getAttribute("data-task")

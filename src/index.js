@@ -6,16 +6,18 @@ import { displayProject, displayTask } from "./displayDOM";
 console.log("test main.js");
 
 let projectArray = [];
+//if (localStorage.getItem("projects")) {
+//  let objects = JSON.parse(localStorage.getItem("projects"));
+//  console.log(objects);
+//  projectArray = objects;
+//  console.log("exist");
+//  displayProject(projectArray);
+//} else {
+//  console.log("doesn't exist");
+//}
 
-//const formBtn = document.getElementById("projectForm");
-//const addProjectBtn = document.getElementById("addProjectBtn");
-//addProjectBtn.addEventListener("click", () => {
-//  formBtn.classList.toggle("hide");
-//});
-//submit();
 getDataID();
 eventListeners();
 taskEvents();
-
 
 export { projectArray };

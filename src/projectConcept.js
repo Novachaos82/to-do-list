@@ -7,6 +7,7 @@ import {
   deleteProject,
   updateTitle,
 } from "./displayDOM";
+import { localeUpdate } from "./storage";
 
 const eventListeners = () => {
   const addProjectBtn = document.getElementById("addProjectBtn");
@@ -19,10 +20,10 @@ const eventListeners = () => {
   projectSubmitBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    addProjectToArray();
+    //addProjectToArray();
 
     console.log(projectArray);
-    displayProject(projectArray);
+    addProjectToArray();
   });
 
   const projects = document.querySelector(".projects-div");
@@ -38,6 +39,8 @@ const addProjectToArray = () => {
   const newProject = createProject(projectData, projectName);
   console.log(projectData + "each time");
   projectArray.push(newProject);
+  //localeUpdate();
+  addProjectToDOM(projectData, projectName);
 
   formModule().hideFormProject();
   id++;
@@ -64,10 +67,10 @@ const addProjectToDOM = (projectData, projectName) => {
   projectDiv.appendChild(project);
 };
 
-const newDataId = () => {
-  const projectDataNum = document.querySelectorAll("[data-project]");
-  return projectDataNum.length;
-};
+//const newDataId = () => {
+//  const projectDataNum = document.querySelectorAll("[data-project]");
+//  return projectDataNum.length;
+//};
 
 const select = (e) => {
   let check = e.target.id;

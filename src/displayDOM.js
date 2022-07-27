@@ -1,6 +1,7 @@
 import { addProjectToDOM } from "./projectConcept";
 import { addTaskToDom, getDataID } from "./taskConcept";
 import { projectArray } from ".";
+import { localeUpdate } from "./storage";
 
 const formModule = () => {
   const showTaskForm = () => {
@@ -36,7 +37,9 @@ const displayProject = (array) => {
   document.querySelector(".projects-div").replaceChildren();
   console.log(" displayProject is called");
   array.forEach((element) => {
-    addProjectToDOM(element.projectData, element.projectName);
+    if (element != null) {
+      addProjectToDOM(element.projectData, element.projectName);
+    }
   });
 };
 
@@ -65,17 +68,27 @@ const updateTitle = (title) => {
 const deleteProject = (projectID) => {
   console.log(`removing  ${projectID}...`);
   delete projectArray[projectID];
+
   //projectArray.splice(projectID, 1);
-  //projectArray.map(function (el) {
-  //  console.log("filter working?" + el.projectData);
-  //});
+
+  //projectArray = projectArray.filter((x) => x.projectData !== projectID);
+  //localeUpdate();
   displayProject(projectArray);
 };
 
 const deleteTask = (projectID, taskID) => {
-  projectArray[projectID].taskArray.splice(taskID, 1);
+  console.log("delete task function");
 
+  //delete projectArray[projectID].taskArray[taskID];
+  projectArray[projectID].taskArray.splice(taskID, 1);
+  //projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(
+  //  (task) => task.id != taskID
+  //);
+  //localeUpdate();
   displayTask(projectID);
+  //projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(
+  //(x) => x.id !== taskID
+  //);
 };
 export {
   formModule,
