@@ -224,7 +224,7 @@ ul {
 }
 
 .tasks li:hover {
-  background: #fff;
+  opacity: 80%;
 }
 
 .tasks li input[type="checkbox"] {

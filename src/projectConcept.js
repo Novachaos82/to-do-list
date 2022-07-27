@@ -27,19 +27,20 @@ const eventListeners = () => {
 
   const projects = document.querySelector(".projects-div");
   projects.addEventListener("click", (e) => {
-    e.stopPropagation();
     select(e);
   });
 };
 
+let id = 0;
 const addProjectToArray = () => {
   let projectName = document.getElementById("projectInput").value;
-  let projectData = newDataId();
+  let projectData = id;
   const newProject = createProject(projectData, projectName);
   console.log(projectData + "each time");
   projectArray.push(newProject);
 
   formModule().hideFormProject();
+  id++;
 };
 
 const addProjectToDOM = (projectData, projectName) => {
@@ -55,6 +56,7 @@ const addProjectToDOM = (projectData, projectName) => {
   delBtn.classList.add("projectDelBtn");
   delBtn.classList.add("fa-solid");
   delBtn.classList.add("fa-xmark");
+  delBtn.dataset.id = projectData;
   //delBtn.innerHTML = `<i class="fa-solid fa-xmark">`;
 
   project.appendChild(delBtn);
@@ -74,7 +76,11 @@ const select = (e) => {
     updateTitle(e.target.textContent);
   }
   if (check === "deleteButton") {
-    deleteProject(e.target.parentNode.getAttribute("data-project"));
+    console.log(
+      e.target.parentNode.getAttribute("data-project") +
+        "checking the delete button id"
+    );
+    deleteProject(e.target.getAttribute("data-id"));
   }
 };
 

@@ -6,6 +6,7 @@ const formModule = () => {
   const showTaskForm = () => {
     const form = document.getElementById("taskForm");
     form.classList.remove("hide");
+
     form.reset();
   };
 
@@ -18,6 +19,7 @@ const formModule = () => {
     const projectForm = document.getElementById("projectForm");
 
     projectForm.classList.remove("hide");
+    document.getElementById("projectInput").focus();
     projectForm.reset();
   };
 
@@ -61,7 +63,12 @@ const updateTitle = (title) => {
 };
 
 const deleteProject = (projectID) => {
-  projectArray.splice(projectID, 1);
+  console.log(`removing  ${projectID}...`);
+  delete projectArray[projectID];
+  //projectArray.splice(projectID, 1);
+  //projectArray.map(function (el) {
+  //  console.log("filter working?" + el.projectData);
+  //});
   displayProject(projectArray);
 };
 
