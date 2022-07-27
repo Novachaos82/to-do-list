@@ -1,5 +1,5 @@
 import { addProjectToDOM } from "./projectConcept";
-import { addTaskToDom } from "./taskConcept";
+import { addTaskToDom, getDataID } from "./taskConcept";
 import { projectArray } from ".";
 
 const formModule = () => {
@@ -55,9 +55,26 @@ const displayTask = (projectID) => {
   });
 };
 
+const updateTitle = (title) => {
+  const titleDiv = document.querySelector(".title");
+  titleDiv.textContent = title;
+};
+
+const deleteProject = (projectID) => {
+  projectArray.splice(projectID, 1);
+  displayProject(projectArray);
+};
+
 const deleteTask = (projectID, taskID) => {
   projectArray[projectID].taskArray.splice(taskID, 1);
 
   displayTask(projectID);
 };
-export { formModule, displayProject, displayTask, deleteTask };
+export {
+  formModule,
+  displayProject,
+  displayTask,
+  deleteTask,
+  deleteProject,
+  updateTitle,
+};

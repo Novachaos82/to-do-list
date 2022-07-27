@@ -1,8 +1,13 @@
 import { projectArray } from ".";
 import { createProject } from "./factories";
-import { formModule, displayTask, displayProject } from "./displayDOM";
+import {
+  formModule,
+  displayTask,
+  displayProject,
+  deleteProject,
+  updateTitle,
+} from "./displayDOM";
 
-import { getDataID } from "./taskConcept";
 const eventListeners = () => {
   const addProjectBtn = document.getElementById("addProjectBtn");
   addProjectBtn.addEventListener("click", formModule().showFormProject);
@@ -21,8 +26,9 @@ const eventListeners = () => {
   });
 
   const projects = document.querySelector(".projects-div");
-  projects.addEventListener("mouseover", () => {
-    select();
+  projects.addEventListener("click", (e) => {
+    e.stopPropagation();
+    select(e);
   });
 };
 
@@ -47,7 +53,9 @@ const addProjectToDOM = (projectData, projectName) => {
   const delBtn = document.createElement("button");
   delBtn.id = "deleteButton";
   delBtn.classList.add("projectDelBtn");
-  delBtn.innerHTML = `<i class="fa-solid fa-xmark">`;
+  delBtn.classList.add("fa-solid");
+  delBtn.classList.add("fa-xmark");
+  //delBtn.innerHTML = `<i class="fa-solid fa-xmark">`;
 
   project.appendChild(delBtn);
 
@@ -59,34 +67,26 @@ const newDataId = () => {
   return projectDataNum.length;
 };
 
-const select = () => {
-  //if (e.contains("project")) {
-  //  selectClassAdd();
-  //} else {
-  //  deleteProject();
-  //}
-  const projects = document.querySelectorAll(".project");
-
-  projects.forEach((project) => {
-    //project.classList.remove("selected");
-    project.addEventListener("click", (e) => {
-      if (document.querySelector(".selected") != null) {
-        const oldTile = document.querySelector(".selected");
-        oldTile.classList.remove("selected");
-      }
-
-      project.classList.add("selected");
-      console.log(document.querySelector(".selected").dataset.project);
-      e.stopImmediatePropagation();
-      displayTask(getDataID());
-    });
-    //project.classList.remove("selected");
-  });
+const select = (e) => {
+  let check = e.target.id;
+  if (check === "projectTile") {
+    selectTile(e.target);
+    updateTitle(e.target.textContent);
+  }
+  if (check === "deleteButton") {
+    deleteProject(e.target.parentNode.getAttribute("data-project"));
+  }
 };
 
-//const selectClassAdd = () => {};
-//const deleteProject = (projectData) => {
-//  projectArray.splice(projectData, 1);
-//};
+const selectTile = (projectList) => {
+  if (document.querySelector(".selected") != null) {
+    const oldTile = document.querySelector(".selected");
+    oldTile.classList.remove("selected");
+  }
+
+  projectList.classList.add("selected");
+  /*displaying task on each selection*/
+  displayTask(projectList.getAttribute("data-project"));
+};
 
 export { eventListeners, addProjectToDOM };
