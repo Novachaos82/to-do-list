@@ -3,6 +3,25 @@ import { addTaskToDom, getDataID } from "./taskConcept";
 import { projectArray } from ".";
 import { localeUpdate } from "./storage";
 
+//const defaultSelection = ()=>{
+//  if()
+//}
+
+const allTask = () => {
+  projectArray.forEach((project) => {
+    project.taskArray.forEach((task) => {
+      addTaskToDom(
+        task.checkbox,
+        task.title,
+        task.details,
+        task.date,
+        task.id,
+        task.priority
+      );
+    });
+  });
+};
+
 const formModule = () => {
   const showTaskForm = () => {
     const form = document.getElementById("taskForm");
@@ -75,26 +94,37 @@ const deleteProject = (projectID) => {
       project.projectData -= 1;
     }
   });
+  addTaskButtonModule().hideAddTaskButton();
 
-  //localeUpdate();
+  localeUpdate();
   displayProject(projectArray);
 };
 
 const deleteTask = (projectID, taskID) => {
   console.log("delete task function");
 
-  //projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(
-  //  (task) => task.id != taskID
-  //);
   projectArray[projectID].taskArray.splice(taskID, 1);
   projectArray[projectID].taskArray.forEach((task) => {
     if (task.id > taskID) {
       task.id -= 1;
     }
   });
-  //localeUpdate();
+  localeUpdate();
   displayTask(projectID);
 };
+
+const addTaskButtonModule = () => {
+  const addTaskBtn = document.getElementById("addTask");
+  const hideAddTaskButton = () => {
+    addTaskBtn.style.display = "none";
+  };
+
+  const showAddTaskBtn = () => {
+    addTaskBtn.style.display = "block";
+  };
+  return { hideAddTaskButton, showAddTaskBtn };
+};
+
 export {
   formModule,
   displayProject,
@@ -102,4 +132,6 @@ export {
   deleteTask,
   deleteProject,
   updateTitle,
+  addTaskButtonModule,
+  allTask,
 };

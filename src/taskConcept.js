@@ -1,6 +1,6 @@
 import { projectArray } from ".";
 import { createTask } from "./factories";
-import { deleteTask, displayTask, formModule } from "./displayDOM";
+import { allTask, deleteTask, displayTask, formModule } from "./displayDOM";
 import { localeUpdate } from "./storage";
 /*task form button events*/
 const taskEvents = () => {
@@ -21,7 +21,10 @@ const taskEvents = () => {
   taskUlDIV.addEventListener("click", (e) => {
     checkEvent(e);
   });
-  displayTask(getDataID());
+
+  //allTask();
+
+  //displayTask(getDataID());
 };
 /*task creator factory*/
 
@@ -38,7 +41,7 @@ const addTasktoTaskArray = () => {
   const priority = document.getElementById("priority").value;
   const newTask = createTask(title, details, date, taskID, priority, dataId);
   projectArray[dataId].taskArray.push(newTask);
-  //localeUpdate();
+  localeUpdate();
   addTaskToDom(false, title, details, date, taskID, priority);
   //id++;
 

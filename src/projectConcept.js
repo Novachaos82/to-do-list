@@ -6,6 +6,7 @@ import {
   displayProject,
   deleteProject,
   updateTitle,
+  addTaskButtonModule,
 } from "./displayDOM";
 import { localeUpdate } from "./storage";
 
@@ -30,6 +31,11 @@ const eventListeners = () => {
   projects.addEventListener("click", (e) => {
     select(e);
   });
+
+  //const defaults = document.querySelector(".default-projects");
+  //defaults.addEventListener("click", (e) => {
+  //  select(e);
+  //});
 };
 
 const addProjectToArray = () => {
@@ -38,7 +44,7 @@ const addProjectToArray = () => {
   const newProject = createProject(projectData, projectName);
   console.log(projectData + "each time");
   projectArray.push(newProject);
-  //localeUpdate();
+  localeUpdate();
   addProjectToDOM(projectData, projectName);
 
   formModule().hideFormProject();
@@ -73,7 +79,12 @@ const newDataId = () => {
 
 const select = (e) => {
   let check = e.target.id;
-  if (check === "projectTile") {
+  if (
+    check === "projectTile" ||
+    check === "allTask" ||
+    check === "today" ||
+    check === "sevenDays"
+  ) {
     selectTile(e.target);
     updateTitle(e.target.textContent);
   }
@@ -93,8 +104,11 @@ const selectTile = (projectList) => {
   }
 
   projectList.classList.add("selected");
+  addTaskButtonModule().showAddTaskBtn();
   /*displaying task on each selection*/
-  displayTask(projectList.getAttribute("data-project"));
+  if (projectArray.length != 0) {
+    displayTask(projectList.getAttribute("data-project"));
+  }
 };
 
 export { eventListeners, addProjectToDOM };
