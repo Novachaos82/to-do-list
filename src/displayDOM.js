@@ -54,7 +54,7 @@ const displayTask = (projectID) => {
       task.title,
       task.details,
       task.date,
-      task.taskID,
+      task.id,
       task.priority
     );
   });
@@ -67,9 +67,14 @@ const updateTitle = (title) => {
 
 const deleteProject = (projectID) => {
   console.log(`removing  ${projectID}...`);
-  delete projectArray[projectID];
+  //delete projectArray[projectID];
 
-  //projectArray.splice(projectID, 1);
+  projectArray.splice(projectID, 1);
+  projectArray.forEach((project) => {
+    if (project.projectData > projectID) {
+      project.projectData -= 1;
+    }
+  });
 
   //projectArray = projectArray.filter((x) => x.projectData !== projectID);
   //localeUpdate();
@@ -80,10 +85,13 @@ const deleteTask = (projectID, taskID) => {
   console.log("delete task function");
 
   //delete projectArray[projectID].taskArray[taskID];
-  projectArray[projectID].taskArray.splice(taskID, 1);
-  //projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(
-  //  (task) => task.id != taskID
-  //);
+
+  //projectArray[projectID].taskArray.splice(taskID, 1);
+
+  //projectArray[projectID].taskArray.splice(taskID, 1);
+  projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(
+    (task) => task.id != taskID
+  );
   //localeUpdate();
   displayTask(projectID);
   //projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(

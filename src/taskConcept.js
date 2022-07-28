@@ -19,13 +19,7 @@ const taskEvents = () => {
 
   const taskUlDIV = document.querySelector(".tasks");
   taskUlDIV.addEventListener("click", (e) => {
-    //e.stopPropagation();
-
     checkEvent(e);
-    //console.log(
-    //  e.target.parentNode.parentNode.getAttribute("data-task") + "e.parentnode"
-    //);
-    //console.log(e.target.id);
   });
   displayTask(getDataID());
 };
@@ -49,10 +43,6 @@ const addTasktoTaskArray = () => {
   id++;
   formModule().hideTaskForm();
 };
-
-//const getTaskId = ()=>{
-//  projectArray[getDataID()].taskArray.len
-//}
 
 /*adding task to DOM*/
 const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {

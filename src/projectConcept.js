@@ -32,10 +32,9 @@ const eventListeners = () => {
   });
 };
 
-let id = 0;
 const addProjectToArray = () => {
   let projectName = document.getElementById("projectInput").value;
-  let projectData = id;
+  let projectData = newDataId();
   const newProject = createProject(projectData, projectName);
   console.log(projectData + "each time");
   projectArray.push(newProject);
@@ -43,7 +42,7 @@ const addProjectToArray = () => {
   addProjectToDOM(projectData, projectName);
 
   formModule().hideFormProject();
-  id++;
+  //id++;
 };
 
 const addProjectToDOM = (projectData, projectName) => {
@@ -67,10 +66,10 @@ const addProjectToDOM = (projectData, projectName) => {
   projectDiv.appendChild(project);
 };
 
-//const newDataId = () => {
-//  const projectDataNum = document.querySelectorAll("[data-project]");
-//  return projectDataNum.length;
-//};
+const newDataId = () => {
+  const projectDataNum = document.querySelectorAll("[data-project]");
+  return projectDataNum.length;
+};
 
 const select = (e) => {
   let check = e.target.id;
