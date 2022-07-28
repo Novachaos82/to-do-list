@@ -76,7 +76,6 @@ const deleteProject = (projectID) => {
     }
   });
 
-  //projectArray = projectArray.filter((x) => x.projectData !== projectID);
   //localeUpdate();
   displayProject(projectArray);
 };
@@ -84,19 +83,17 @@ const deleteProject = (projectID) => {
 const deleteTask = (projectID, taskID) => {
   console.log("delete task function");
 
-  //delete projectArray[projectID].taskArray[taskID];
-
-  //projectArray[projectID].taskArray.splice(taskID, 1);
-
-  //projectArray[projectID].taskArray.splice(taskID, 1);
-  projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(
-    (task) => task.id != taskID
-  );
+  //projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(
+  //  (task) => task.id != taskID
+  //);
+  projectArray[projectID].taskArray.splice(taskID, 1);
+  projectArray[projectID].taskArray.forEach((task) => {
+    if (task.id > taskID) {
+      task.id -= 1;
+    }
+  });
   //localeUpdate();
   displayTask(projectID);
-  //projectArray[projectID].taskArray = projectArray[projectID].taskArray.filter(
-  //(x) => x.id !== taskID
-  //);
 };
 export {
   formModule,

@@ -25,7 +25,7 @@ const taskEvents = () => {
 };
 /*task creator factory*/
 
-let id = 0;
+//let id = 0;
 
 /*adding the task to projectArray "taskArray"*/
 const addTasktoTaskArray = () => {
@@ -34,13 +34,15 @@ const addTasktoTaskArray = () => {
   const details = document.getElementById("taskDetails").value;
   const date = document.getElementById("Date").value;
   const dataId = getDataID();
-  const taskID = id;
+  const taskID = newTaskID();
   const priority = document.getElementById("priority").value;
   const newTask = createTask(title, details, date, taskID, priority, dataId);
   projectArray[dataId].taskArray.push(newTask);
   //localeUpdate();
   addTaskToDom(false, title, details, date, taskID, priority);
-  id++;
+  //id++;
+
+  //console.log(Newid + "new id boiiiiiiii");
   formModule().hideTaskForm();
 };
 
@@ -87,7 +89,7 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
 
   const deleteBtn = document.createElement("button");
   deleteBtn.id = "delete";
-  deleteBtn.dataset.id = taskID;
+
   deleteBtn.classList.add("fa-solid");
   deleteBtn.classList.add("fa-trash-can");
   listBtnDiv.appendChild(deleteBtn);
@@ -105,6 +107,11 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
 
   /*appending li to task div*/
   tasks.appendChild(li);
+};
+
+const newTaskID = () => {
+  let id = projectArray[getDataID()].taskArray.length;
+  return id;
 };
 const checkEvent = (e) => {
   if (e.target.id === "delete") {
