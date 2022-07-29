@@ -111,6 +111,7 @@ const checkTask = (projectID, taskID) => {
       }
     }
   });
+  localeUpdate();
   displayTask(projectID);
 };
 
