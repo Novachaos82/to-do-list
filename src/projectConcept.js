@@ -7,6 +7,7 @@ import {
   deleteProject,
   updateTitle,
   addTaskButtonModule,
+  allTask,
 } from "./displayDOM";
 import { localeUpdate } from "./storage";
 
@@ -21,23 +22,25 @@ const eventListeners = () => {
   projectSubmitBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    //addProjectToArray();
-
     console.log(projectArray);
     addProjectToArray();
   });
 
+  /*checking the project div for selection of project*/
   const projects = document.querySelector(".projects-div");
   projects.addEventListener("click", (e) => {
     select(e);
   });
 
-  //const defaults = document.querySelector(".default-projects");
-  //defaults.addEventListener("click", (e) => {
-  //  select(e);
-  //});
+  /*checking the all task/task by date divs*/
+
+  const defaults = document.querySelector(".default-projects");
+  defaults.addEventListener("click", (e) => {
+    select(e);
+  });
 };
 
+/*adding project to "projectArray" by push and displating it through addToDom*/
 const addProjectToArray = () => {
   let projectName = document.getElementById("projectInput").value;
   let projectData = newDataId();
@@ -51,6 +54,7 @@ const addProjectToArray = () => {
   //id++;
 };
 
+/*adding the project to dom wrt their id and name*/
 const addProjectToDOM = (projectData, projectName) => {
   const projectDiv = document.querySelector(".projects-div");
   const project = document.createElement("div");
@@ -72,31 +76,33 @@ const addProjectToDOM = (projectData, projectName) => {
   projectDiv.appendChild(project);
 };
 
+/*getting new id based on array length*/
 const newDataId = () => {
   const projectDataNum = document.querySelectorAll("[data-project]");
   return projectDataNum.length;
 };
 
+/*checkig for selected event*/
 const select = (e) => {
   let check = e.target.id;
-  if (
-    check === "projectTile" ||
-    check === "allTask" ||
-    check === "today" ||
-    check === "sevenDays"
-  ) {
+  if (check === "projectTile") {
     selectTile(e.target);
     updateTitle(e.target.textContent);
+    displayTask(e.target.getAttribute("data-project"));
   }
+  if (check === "allTask") {
+    selectTile(e.target);
+    allTask();
+    updateTitle(e.target.textContent);
+    addTaskButtonModule().hideAddTaskButton();
+  }
+
   if (check === "deleteButton") {
-    console.log(
-      e.target.parentNode.getAttribute("data-project") +
-        "checking the delete button id"
-    );
     deleteProject(e.target.getAttribute("data-id"));
   }
 };
 
+/*adding the class "selected" on click event(selection)*/
 const selectTile = (projectList) => {
   if (document.querySelector(".selected") != null) {
     const oldTile = document.querySelector(".selected");
@@ -106,9 +112,6 @@ const selectTile = (projectList) => {
   projectList.classList.add("selected");
   addTaskButtonModule().showAddTaskBtn();
   /*displaying task on each selection*/
-  if (projectArray.length != 0) {
-    displayTask(projectList.getAttribute("data-project"));
-  }
 };
 
 export { eventListeners, addProjectToDOM };

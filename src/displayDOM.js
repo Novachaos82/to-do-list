@@ -3,11 +3,14 @@ import { addTaskToDom, getDataID } from "./taskConcept";
 import { projectArray } from ".";
 import { localeUpdate } from "./storage";
 
-//const defaultSelection = ()=>{
-//  if()
-//}
+/*clear tasks/todos panel before displaying*/
+const clearTaskContent = () => {
+  document.querySelector(".tasks").innerHTML = "";
+};
 
+/*function to display all task*/
 const allTask = () => {
+  clearTaskContent();
   projectArray.forEach((project) => {
     project.taskArray.forEach((task) => {
       addTaskToDom(
@@ -20,8 +23,18 @@ const allTask = () => {
       );
     });
   });
+  deleteBtnDisable();
 };
 
+/*disable deleteBtn*/
+const deleteBtnDisable = () => {
+  const allDeleteBtn = document.querySelectorAll("#delete");
+  allDeleteBtn.forEach((deleteBtn) => {
+    deleteBtn.style.display = "none";
+  });
+};
+
+/*form module to control the opening and closing of forms(project + task)*/
 const formModule = () => {
   const showTaskForm = () => {
     const form = document.getElementById("taskForm");
@@ -52,6 +65,7 @@ const formModule = () => {
   return { showTaskForm, hideTaskForm, showFormProject, hideFormProject };
 };
 
+/*display the project(objects) from the project array(array of objects)*/
 const displayProject = (array) => {
   document.querySelector(".projects-div").replaceChildren();
   console.log(" displayProject is called");
@@ -62,9 +76,10 @@ const displayProject = (array) => {
   });
 };
 
+/*display the task by taking parentArray(project) id*/
 const displayTask = (projectID) => {
   console.log(" displayTask is called");
-  document.querySelector(".tasks").innerHTML = "";
+  clearTaskContent();
 
   projectArray[projectID].taskArray.forEach((task) => {
     console.log("display task called");
@@ -79,11 +94,28 @@ const displayTask = (projectID) => {
   });
 };
 
+/*updating title */
 const updateTitle = (title) => {
   const titleDiv = document.querySelector(".title");
   titleDiv.textContent = title;
 };
 
+/*for checkbox checking the task completion on click*/
+const checkTask = (projectID, taskID) => {
+  projectArray[projectID].taskArray.forEach((task) => {
+    if (task.id == taskID) {
+      console.log("cehclbox");
+      if (task.checkbox === false) {
+        task.checkbox = true;
+      } else {
+        task.checkbox = false;
+      }
+    }
+  });
+  displayTask(projectID);
+};
+
+/*function to delete project by projectID*/
 const deleteProject = (projectID) => {
   console.log(`removing  ${projectID}...`);
   //delete projectArray[projectID];
@@ -100,6 +132,7 @@ const deleteProject = (projectID) => {
   displayProject(projectArray);
 };
 
+/*function to delete task taking projectID for parent array index and taskid for the child array index*/
 const deleteTask = (projectID, taskID) => {
   console.log("delete task function");
 
@@ -113,6 +146,7 @@ const deleteTask = (projectID, taskID) => {
   displayTask(projectID);
 };
 
+/*hide/show add task button based on selection of project*/
 const addTaskButtonModule = () => {
   const addTaskBtn = document.getElementById("addTask");
   const hideAddTaskButton = () => {
@@ -134,4 +168,5 @@ export {
   updateTitle,
   addTaskButtonModule,
   allTask,
+  checkTask,
 };

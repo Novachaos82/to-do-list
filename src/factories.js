@@ -10,15 +10,27 @@ const createProject = (projectData, projectName) => {
   };
 };
 
-const createTask = (title, details, date, id, priority, projectID) => {
+const createTask = (
+  title,
+  details,
+  date,
+  id,
+  priority,
+  projectID,
+  checkbox
+) => {
+  const changeCheckStatus = () => {
+    this.checkbox != this.checkbox;
+  };
   return {
-    checkbox: false,
+    checkbox: checkbox,
     title,
     details,
     date,
     id,
     priority,
     projectID,
+    changeCheckStatus,
   };
 };
 

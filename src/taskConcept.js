@@ -1,6 +1,12 @@
 import { projectArray } from ".";
 import { createTask } from "./factories";
-import { allTask, deleteTask, displayTask, formModule } from "./displayDOM";
+import {
+  allTask,
+  checkTask,
+  deleteTask,
+  displayTask,
+  formModule,
+} from "./displayDOM";
 import { localeUpdate } from "./storage";
 /*task form button events*/
 const taskEvents = () => {
@@ -19,16 +25,10 @@ const taskEvents = () => {
 
   const taskUlDIV = document.querySelector(".tasks");
   taskUlDIV.addEventListener("click", (e) => {
+    /*checking the event trigerred on selection*/
     checkEvent(e);
   });
-
-  //allTask();
-
-  //displayTask(getDataID());
 };
-/*task creator factory*/
-
-//let id = 0;
 
 /*adding the task to projectArray "taskArray"*/
 const addTasktoTaskArray = () => {
@@ -39,13 +39,20 @@ const addTasktoTaskArray = () => {
   const dataId = getDataID();
   const taskID = newTaskID();
   const priority = document.getElementById("priority").value;
-  const newTask = createTask(title, details, date, taskID, priority, dataId);
+  let checkbox = false;
+  const newTask = createTask(
+    title,
+    details,
+    date,
+    taskID,
+    priority,
+    dataId,
+    false
+  );
   projectArray[dataId].taskArray.push(newTask);
   localeUpdate();
-  addTaskToDom(false, title, details, date, taskID, priority);
-  //id++;
+  addTaskToDom(checkbox, title, details, date, taskID, priority);
 
-  //console.log(Newid + "new id boiiiiiiii");
   formModule().hideTaskForm();
 };
 
@@ -112,23 +119,26 @@ const addTaskToDom = (checkbox, title, details, date, taskID, priority) => {
   tasks.appendChild(li);
 };
 
+/*getting  unique taskID for each parentArray(project)*/
 const newTaskID = () => {
   let id = projectArray[getDataID()].taskArray.length;
   return id;
 };
 const checkEvent = (e) => {
   if (e.target.id === "delete") {
-    console.log(
-      getDataID(),
-      e.target.parentNode.parentNode.getAttribute("data-task") +
-        "checkeventDelete"
-    );
     deleteTask(
       getDataID(),
       e.target.parentNode.parentNode.getAttribute("data-task")
     );
   }
+  if (e.target.id === "checkboxID") {
+    checkTask(
+      getDataID(),
+      e.target.parentNode.parentNode.getAttribute("data-task")
+    );
+  }
 };
+
 /*getting the selected project data id "data-project"*/
 const getDataID = () => {
   const selectedProject = document.querySelector(".selected");
