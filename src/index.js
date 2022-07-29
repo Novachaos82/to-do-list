@@ -1,6 +1,6 @@
-import { getDataID, taskEvents } from "./taskConcept";
-import { addProjectToDOM, dataLength, eventListeners } from "./projectConcept";
-import { allTask, displayProject, displayTask } from "./displayDOM";
+import { taskEvents } from "./taskConcept";
+import { addProjectToDOM, eventListeners } from "./projectConcept";
+import { allTask, displayProject } from "./displayDOM";
 import { createProject } from "./factories";
 //import { submit } from "./projectConcept";
 
@@ -16,9 +16,13 @@ if (localStorage.getItem("projects")) {
   allTask();
 } else {
   console.log("doesn't exist");
+
+  let defaultProject = createProject("0", "default1");
+  projectArray.push(defaultProject);
+  addProjectToDOM(0, "default1");
+  displayProject(projectArray);
 }
 
-getDataID();
 eventListeners();
 taskEvents();
 

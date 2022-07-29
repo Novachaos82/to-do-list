@@ -1,5 +1,5 @@
 import { addProjectToDOM } from "./projectConcept";
-import { addTaskToDom, getDataID } from "./taskConcept";
+import { addTaskToDom } from "./taskConcept";
 import { projectArray } from ".";
 import { localeUpdate } from "./storage";
 
@@ -23,6 +23,7 @@ const allTask = () => {
       );
     });
   });
+
   deleteBtnDisable();
 };
 
@@ -82,7 +83,6 @@ const displayTask = (projectID) => {
   clearTaskContent();
 
   projectArray[projectID].taskArray.forEach((task) => {
-    console.log("display task called");
     addTaskToDom(
       task.checkbox,
       task.title,
@@ -104,7 +104,6 @@ const updateTitle = (title) => {
 const checkTask = (projectID, taskID) => {
   projectArray[projectID].taskArray.forEach((task) => {
     if (task.id == taskID) {
-      console.log("cehclbox");
       if (task.checkbox === false) {
         task.checkbox = true;
       } else {
@@ -134,8 +133,6 @@ const deleteProject = (projectID) => {
 
 /*function to delete task taking projectID for parent array index and taskid for the child array index*/
 const deleteTask = (projectID, taskID) => {
-  console.log("delete task function");
-
   projectArray[projectID].taskArray.splice(taskID, 1);
   projectArray[projectID].taskArray.forEach((task) => {
     if (task.id > taskID) {

@@ -3,7 +3,6 @@ import { createProject } from "./factories";
 import {
   formModule,
   displayTask,
-  displayProject,
   deleteProject,
   updateTitle,
   addTaskButtonModule,
@@ -45,7 +44,7 @@ const addProjectToArray = () => {
   let projectName = document.getElementById("projectInput").value;
   let projectData = newDataId();
   const newProject = createProject(projectData, projectName);
-  console.log(projectData + "each time");
+
   projectArray.push(newProject);
   localeUpdate();
   addProjectToDOM(projectData, projectName);

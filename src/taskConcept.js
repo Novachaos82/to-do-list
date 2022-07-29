@@ -1,12 +1,6 @@
 import { projectArray } from ".";
 import { createTask } from "./factories";
-import {
-  allTask,
-  checkTask,
-  deleteTask,
-  displayTask,
-  formModule,
-} from "./displayDOM";
+import { checkTask, deleteTask, formModule } from "./displayDOM";
 import { localeUpdate } from "./storage";
 /*task form button events*/
 const taskEvents = () => {
@@ -18,7 +12,6 @@ const taskEvents = () => {
 
   const submitTaskBtn = document.getElementById("taskSubmitBtn");
   submitTaskBtn.addEventListener("click", (e) => {
-    e.preventDefault();
     addTasktoTaskArray();
     console.log(projectArray[getDataID()].taskArray);
   });
