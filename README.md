@@ -4,4 +4,4 @@
 
 - Used webpack and OOP concepts
 
-####[Live preview](https://novachaos82.github.io/to-do-list/) 👈
+[Live preview](https://novachaos82.github.io/to-do-list/) 👈
